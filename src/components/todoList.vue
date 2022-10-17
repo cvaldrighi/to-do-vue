@@ -14,12 +14,12 @@
         <thead>
           <tr>
             <th scope="col">Task</th>
-            <th scope="col">Status</th>
+            <th scope="col">Is done?</th>
             <th scope="col" class="text-center">#</th>
             <th scope="col" class="text-center">#</th>
           </tr>
         </thead>
-        <tr v-for="task of result.tasks" :key="task.id">
+        <tr v-for="task of result" :key="task.id">
           <td>{{task.title}}</td>
           <td>{{task.isDone}}</td>
           <td>
