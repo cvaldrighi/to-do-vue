@@ -4,7 +4,7 @@ export default {
     data() {
         return {
             result: [],
-            title: ''
+            //title: ''
         }
     },
     mounted() {
@@ -14,7 +14,6 @@ export default {
         async getTasks() {
             this.result = (await axios.get('http://localhost:8000/api/tasks')).data;
             this.getTasks();
-            console.log(this.result);
         },
         async deleteTask(id) {
             try {
@@ -24,5 +23,24 @@ export default {
                 console.log(err);
             }
         },
+        async updateStatus(id) {
+            try {
+                const task = this.findTaskById(id);
+                const put = (await axios.put(`http://localhost:8000/api/tasks/${id}`, {
+                    isDone: !task.isDone
+                })).data;
+                console.log(put);
+                this.getTasks;
+            } catch (err) {
+                console.log(err);
+            }
+        },
+        findTaskById(id) {
+            for (let i = 0; i < this.result.length; i++) {
+                if (this.result[i].id == id) {
+                    return this.result[i];
+                }
+            }
+        }
     }
 }

@@ -3,7 +3,8 @@ export default {
     name: 'AddTodo',
     data() {
         return {
-            title: ''
+            title: '',
+            isDone: ''
         }
     },
     methods: {

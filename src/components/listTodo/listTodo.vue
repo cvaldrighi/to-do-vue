@@ -4,15 +4,18 @@
       <thead>
         <tr>
           <th>Task</th>
-          <th>is done?</th>
+          <th>Status</th>
           <th class="text-center"></th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="task in result" :key="task.id">
           <td>{{ task.title }}</td>
-          <td>{{ task.isDone }}
-
+          <td v-if="!task.isDone">
+            <input type="checkbox" @change="updateStatus(task.id)">
+          </td>
+          <td v-else>
+            <input type="checkbox" checked @change="updateStatus(task.id)">
           </td>
           <td><a class="button is-danger is-small" @click="deleteTask(task.id)">X</a></td>
         </tr>
