@@ -1,22 +1,19 @@
 <template>
+  <NavTodo />
   <div class="container">
 
-    <h1 class="text-center mt-5">ToDo List</h1>
-    <AddTodo />
-    <ListTodo />
+    <router-view />
 
   </div>
 </template>
 
 <script>
-import ListTodo from './components/listTodo/listTodo.vue';
-import AddTodo from './components/addTodo/addTodo.vue';
+import NavTodo from './components/navTodo/navTodo.vue';
 
 export default {
   name: 'App',
   components: {
-    ListTodo,
-    AddTodo
+    NavTodo,
   }
 }
 </script>
