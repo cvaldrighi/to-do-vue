@@ -41,4 +41,8 @@
 .navbg {
     background-color: #a5a1e6 !important;
 }
+
+h5 {
+    color: #0000008C;
+}
 </style>

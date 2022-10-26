@@ -11,7 +11,7 @@
                 <button type="button" class="btn btn-primary ms-4" data-bs-toggle="collapse"
                     data-bs-target="#myCollapse">+</button>
             </p>
-            <div class="collapse show task-card col-4" id="myCollapse">
+            <div class="collapse show add-card col-4" id="myCollapse">
                 <div class="card card-body detail">
                     <textarea class="form-control" placeholder="Enter Task" v-model="title" required></textarea>
                     <button class="btn btn-primary mt-2 col-4" @click="createTasks" data-bs-toggle="collapse"

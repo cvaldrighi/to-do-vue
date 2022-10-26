@@ -24,6 +24,10 @@ a {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin: 30px;
+}
+
+.add-card {
     margin: auto;
 }
 
