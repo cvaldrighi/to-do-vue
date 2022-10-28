@@ -29,6 +29,7 @@ export default {
                     statusId: statusBylist[0].id
                 }
             )).data;
+
             this.title = "";
             this.getListById();
             console.log("List created:", this.result);
@@ -40,34 +41,28 @@ export default {
             } catch (err) {
                 console.log(err);
             }
+
             this.getListById();
         },
 
 
-        async updateStatus(id) {
+        async updateStatus(id, e) {
             try {
-                //let statusBylist = this.findStatusByList();
                 const task = this.findTaskById(id);
 
-                //only works for the first list
-                //need to make it dinamic 
-                if (task.statusId == 1) {
-                    task.statusId = 2;
-                } else if (task.statusId == 2) {
-                    task.statusId = 3
-                }
-
-                const put = (await axios.put(`http://localhost:8000/api/tasks/${id}`, {
+                task.statusId = parseInt(e.target.value);
+                const put = (await axios.put(`http://localhost:8000/api/tasks/status/${id}`, {
                     statusId: task.statusId
                 })).data;
 
                 console.log("atualizando status:", put);
-                //console.log(statusByList);
 
             } catch (err) {
                 console.log(err);
             }
+
             this.getListById();
+
         },
 
         findTaskById(id) {

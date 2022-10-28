@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="add-card col-4 mt-5">
-            <div class="card card-body detail">
+            <div class="add-card card-body detail">
                 <input type="text" class="form-control" placeholder="Enter New List" v-model="title" required />
                 <button class="btn btn-primary mt-2 col-4" @click="createLists" data-bs-toggle="collapse"
                     data-bs-target="#myCollapse">save</button>

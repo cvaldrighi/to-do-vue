@@ -5,7 +5,6 @@ ul {
 
 a {
     cursor: pointer;
-    /* color: white; */
     text-decoration: none;
 }
 
@@ -15,11 +14,6 @@ a {
     justify-content: center;
 }
 
-.addBtn {
-    border-radius: 100%;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
-}
-
 .task-card {
     display: flex;
     flex-wrap: wrap;
@@ -27,19 +21,23 @@ a {
     margin: 30px;
 }
 
-.add-card {
-    margin: auto;
-}
-
-/* .selStatus {
-    width: 5rem;
-} */
-
-.status {
+.status-card {
     background-color: #cfe986 !important;
     min-width: 280px;
     max-width: 280px;
     min-height: 180px;
+}
+
+.selStatus {
+    width: 6rem;
+}
+
+.add-btn {
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.add-card {
+    margin: auto;
 }
 
 .detail {
@@ -48,4 +46,6 @@ a {
     flex: 1 1 100%;
     border-radius: 8px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+    max-width: 250px;
+    word-wrap: break-word;
 }
