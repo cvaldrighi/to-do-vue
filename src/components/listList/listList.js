@@ -1,6 +1,10 @@
 import axios from "axios";
+import draggable from 'vuedraggable';
 export default {
     name: 'listList',
+    components: {
+        draggable
+    },
     data() {
         return {
             tasksByListId: [],
@@ -31,7 +35,7 @@ export default {
 
             this.title = "";
             this.getListById();
-            console.log("List created:", this.result);
+            console.log("Task created:", this.result);
         },
 
         async deleteTask(id) {
@@ -43,11 +47,31 @@ export default {
 
             this.getListById();
         },
-        async updateStatus(id, status) {
+
+        dragStart: function (event) {
+            event.dataTransfer.setData("Text", event.target.id);
+            console.log("drag start");
+        },
+
+        allowDrop: function (event) {
+            event.preventDefault();
+        },
+
+        drop: function (event) {
+            event.preventDefault();
+            var taskId = event.dataTransfer.getData("Text");
+            event.target.appendChild(document.getElementById(taskId));
+
+            this.updateStatus(taskId, event.target.id);
+        },
+
+        async updateStatus(id, e) {
             try {
-                let statusId = parseInt(status);
+                const task = this.findTaskById(id);
+
+                task.statusId = parseInt(e);
                 const put = (await axios.put(`http://localhost:8000/api/tasks/status/${id}`, {
-                    statusId: statusId
+                    statusId: task.statusId
                 })).data;
 
                 console.log("atualizando status:", put);
@@ -59,23 +83,7 @@ export default {
             this.getListById();
 
         },
-        dragStart: function (event) {
-            event.dataTransfer.setData("Text", event.target.id);
 
-            console.log("drag start");
-        },
-        allowDrop: function (event) {
-            event.preventDefault();
-        },
-        drop: function (event) {
-            event.preventDefault();
-            let taskId = event.dataTransfer.getData("Text");
-            event.target.appendChild(document.getElementById(taskId));
-
-            let status = event.target.id;
-
-            this.updateStatus(taskId, status);
-        },
         findTaskById(id) {
             for (let i = 0; i < this.tasksByListId.Task.length; i++) {
                 if (this.tasksByListId.Task[i].id == id) {
@@ -83,6 +91,7 @@ export default {
                 }
             }
         },
+
         findStatusByList() {
             let statusByList = [];
             this.tasksByListId.Status.forEach(e => {
