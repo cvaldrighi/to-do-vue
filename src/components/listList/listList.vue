@@ -20,20 +20,21 @@
             </div>
         </div>
         <div class="task-feed mt-5">
-            <div class="task-card mt-3" v-for="status in tasksByListId.Status" :key="status.id">
-                <div class="detail status-card" :id=status.id v-on:drop="drop" v-on:dragover="allowDrop">
-                    <h3 class="text-center">{{ status.title }}</h3>
-                    <div class="task-card task" v-for="task in tasksByListId.Task" :key="task.id"
-                        v-on:dragstart="dragStart" draggable="true" :id=task.id>
-                        <div v-if="task.statusId == status.id">
-                            <div class="detail">
-                                <div class="row justify-content-end m-1">
-                                    <a class="button is-danger is-small col-1" @click="deleteTask(task.id)">X</a>
-                                </div>
-                                <h4>
-                                    {{ task.title }}
-                                </h4>
+            <div class="mt-3 _card status-card" v-for="status in tasksByListId.Status" :key="status.id" :id=status.id
+                v-on:drop="drop" v-on:dragover="allowDrop">
+
+                <h3 class="status-name">{{ status.title }}</h3>
+
+                <div v-for="task in tasksByListId.Task" :key="task.id" v-on:dragstart="dragStart" draggable="true"
+                    :id=task.id>
+                    <div v-if="task.statusId == status.id">
+                        <div class="_card task-card row">
+                            <div class="del-btn col-10">
+                                <a class="button is-danger is-small col-1" @click="deleteTask(task.id)">X</a>
                             </div>
+                            <h4>
+                                {{ task.title }}
+                            </h4>
                         </div>
                     </div>
                 </div>

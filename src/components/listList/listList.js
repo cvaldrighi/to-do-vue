@@ -1,10 +1,7 @@
 import axios from "axios";
-import draggable from 'vuedraggable';
 export default {
     name: 'listList',
-    components: {
-        draggable
-    },
+
     data() {
         return {
             tasksByListId: [],
@@ -20,7 +17,7 @@ export default {
             let id = this.$route.params.id
             this.tasksByListId = (await axios.get(`http://localhost:8000/api/lists/${id}`)).data;
 
-            setTimeout(this.getListById, 500)
+            setTimeout(this.getListById, 0)
         },
 
         async createTasks() {

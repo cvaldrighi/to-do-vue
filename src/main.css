@@ -1,11 +1,33 @@
-ul {
-    margin: 8px;
-    padding: 12px;
-}
-
 a {
     cursor: pointer;
     text-decoration: none;
+}
+
+._card {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 8px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+    word-wrap: break-word;
+}
+
+.status-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 30px;
+    background-color: #cfe986;
+    width: 280px;
+    min-height: 300px;
+}
+
+.status-name {
+    margin-block-end: auto;
+    display: flex;
+    justify-content: center;
 }
 
 .task-feed {
@@ -15,21 +37,14 @@ a {
 }
 
 .task-card {
+    cursor: move;
+    width: 210px;
+    background-color: #a5a1e6;
+}
+
+.del-btn {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 30px;
-}
-
-.status-card {
-    background-color: #cfe986 !important;
-    min-width: 280px;
-    max-width: 280px;
-    min-height: 180px;
-}
-
-.selStatus {
-    width: 6rem;
+    justify-content: end;
 }
 
 .add-btn {
@@ -38,16 +53,6 @@ a {
 
 .add-card {
     margin: auto;
-}
-
-.detail {
-    background-color: #a5a1e6;
-    padding: 16px 8px;
-    flex: 1 1 100%;
-    border-radius: 8px;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
-    max-width: 250px;
-    word-wrap: break-word;
 }
 
 .drag>div {
