@@ -1,5 +1,4 @@
 import axios from "axios";
-
 export default {
     name: 'listList',
     data() {
@@ -44,15 +43,11 @@ export default {
 
             this.getListById();
         },
-
-
-        async updateStatus(id, e) {
+        async updateStatus(id, status) {
             try {
-                const task = this.findTaskById(id);
-
-                task.statusId = parseInt(e.target.value);
+                let statusId = parseInt(status);
                 const put = (await axios.put(`http://localhost:8000/api/tasks/status/${id}`, {
-                    statusId: task.statusId
+                    statusId: statusId
                 })).data;
 
                 console.log("atualizando status:", put);
@@ -64,7 +59,23 @@ export default {
             this.getListById();
 
         },
+        dragStart: function (event) {
+            event.dataTransfer.setData("Text", event.target.id);
 
+            console.log("drag start");
+        },
+        allowDrop: function (event) {
+            event.preventDefault();
+        },
+        drop: function (event) {
+            event.preventDefault();
+            let taskId = event.dataTransfer.getData("Text");
+            event.target.appendChild(document.getElementById(taskId));
+
+            let status = event.target.id;
+
+            this.updateStatus(taskId, status);
+        },
         findTaskById(id) {
             for (let i = 0; i < this.tasksByListId.Task.length; i++) {
                 if (this.tasksByListId.Task[i].id == id) {
@@ -72,7 +83,6 @@ export default {
                 }
             }
         },
-
         findStatusByList() {
             let statusByList = [];
             this.tasksByListId.Status.forEach(e => {

@@ -49,3 +49,18 @@ a {
     max-width: 250px;
     word-wrap: break-word;
 }
+
+.drag>div {
+    transform: rotate(3deg);
+}
+
+.ghost {
+    background-color: lightgray;
+    border-radius: 6px;
+    max-width: 210px;
+    margin: auto;
+}
+
+.ghost>div {
+    visibility: hidden;
+}
