@@ -9,10 +9,10 @@
         </div>
 
         <div class="task-feed mt-5">
-            <div class="task-card mt-3" v-for="list in resultList" :key="list.id">
+            <div class="task-card _card mt-3" v-for="list in resultList" :key="list.id">
                 <div class="detail">
                     <div class="row justify-content-end m-1">
-                        <a class="button is-danger is-small col-1" @click="deleteList(list.id)">X</a>
+                        <a class="del-btn col-1" @click="deleteList(list.id)">X</a>
                     </div>
                     <h4>
                         {{ list.title }}

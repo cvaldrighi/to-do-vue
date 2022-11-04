@@ -1,6 +1,5 @@
 <template>
     <div class="container">
-
         <div class="row mt-5">
             <div class="col-6">
                 <h1>This is a Reminder App</h1>
