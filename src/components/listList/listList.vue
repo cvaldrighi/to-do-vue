@@ -13,7 +13,7 @@
         <div class="collapse show add-card col-4" id="myCollapse">
             <div class="add-card card-body detail">
                 <textarea class="form-control" placeholder="Enter Task" v-model="title" required></textarea>
-                <button class="btn btn-primary mt-2 col-4" @click="createTasks" data-bs-toggle="collapse"
+                <button class="btn save-btn mt-2 col-4" @click="createTasks" data-bs-toggle="collapse"
                     data-bs-target="#myCollapse">save</button>
             </div>
         </div>

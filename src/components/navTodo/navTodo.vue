@@ -31,7 +31,7 @@
                         </ul>
                     </li>
                 </ul>
-                <h5>today is: {{ currentDate() }}</h5>
+                <h6>today is: {{ currentDate() }}</h6>
             </div>
         </div>
     </nav>
@@ -39,10 +39,10 @@
 <script src="./navTodo.js"></script>
 <style>
 .navbg {
-    background-color: #a5a1e6 !important;
+    background-color: #a44eeb !important;
 }
 
-h5 {
+h6 {
     color: #0000008C;
 }
 </style>
