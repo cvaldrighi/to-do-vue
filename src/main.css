@@ -5,7 +5,7 @@ a {
 
 body {
     background: linear-gradient(45deg, #a5a1e6, #f5f5f5);
-    /* background-color: #eff0e6; */
+    min-height: 100vh;
 
 }
 
@@ -47,6 +47,12 @@ body {
     cursor: move;
     width: 210px;
     background-color: #a5a1e6;
+}
+
+.tag-card {
+    background-color: #a44eeb;
+    color: #a44eeb;
+    border-radius: 100%;
 }
 
 .save-btn {

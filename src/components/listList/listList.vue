@@ -13,6 +13,9 @@
         <div class="collapse show add-card col-4" id="myCollapse">
             <div class="add-card card-body detail">
                 <textarea class="form-control" placeholder="Enter Task" v-model="title" required></textarea>
+                <select class="form-select" multiple v-model="tagId" required>
+                    <option v-for="tag in tasksByListId.Tag" :key="tag.id" :value="tag.id">{{ tag.title }}</option>
+                </select>
                 <button class="btn save-btn mt-2 col-4" @click="createTasks" data-bs-toggle="collapse"
                     data-bs-target="#myCollapse">save</button>
             </div>
@@ -27,6 +30,7 @@
             <div v-for="task in tasksByListId.Task" :key="task.id">
                 <div class="_card task-card row" v-if="task.statusId == status.id" v-on:dragstart="dragStart"
                     draggable="true" :id=task.id>
+                    <div class="tag-card col-1">.</div>
                     <div class="del-btn col-10">
                         <a class="del-btn col-1" @click="deleteTask(task.id)">X</a>
                     </div>
