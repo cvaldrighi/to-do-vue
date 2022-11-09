@@ -5,35 +5,60 @@ export default {
     data() {
         return {
             tasksByListId: [],
-            tagByTaskId: [],
+            taskTags: [],
+            tags: [],
             title: '',
             listId: '',
-            tagId: ''
+            selectedTags: []
         }
     },
     mounted() {
         this.getListById();
+        this.getTaskTags();
+        this.getTags();
     },
     methods: {
+        //api
         async getListById() {
             let id = this.$route.params.id
             this.tasksByListId = (await axios.get(`http://localhost:8000/api/lists/${id}`)).data;
-            setTimeout(this.getListById, 0)
+            setTimeout(this.getListById, 300)
+
+        },
+
+        async getTaskTags() {
+            let tasks;
+            tasks = (await axios.get('http://localhost:8000/api/tasks/')).data;
+            tasks.forEach(task => {
+                task.tags.forEach(tags => {
+                    this.taskTags.push(tags);
+                })
+            })
+
+        },
+
+        async getTags() {
+            this.tags = (await axios.get('http://localhost:8000/api/tags/')).data;
+
         },
 
         async createTasks() {
             let statusBylist = this.findStatusByList();
+            let tags = [];
+            this.selectedTags.forEach(i => {
+                tags.push(i);
+            })
             this.result = (await axios.post('http://localhost:8000/api/tasks',
                 {
                     title: this.title,
                     listId: parseInt(this.$route.params.id),
                     statusId: statusBylist[0].id,
-                    tagId: parseInt(this.tagId)
+                    tagId: tags
                 }
             )).data;
 
             this.title = "";
-            this.getListById();
+            this.selectedTags = [];
             console.log("Task created:", this.result);
         },
 
@@ -43,7 +68,6 @@ export default {
             } catch (err) {
                 console.log(err);
             }
-
             this.getListById();
         },
 
@@ -63,9 +87,9 @@ export default {
             }
 
             this.getListById();
-
         },
 
+        //DnD
         dragStart: function (event) {
             event.dataTransfer.setData("Text", event.target.id);
             console.log("drag start");
@@ -79,10 +103,10 @@ export default {
             event.preventDefault();
             var taskId = event.dataTransfer.getData("Text");
             event.target.appendChild(document.getElementById(taskId));
-
             this.updateStatus(taskId, event.target.id);
         },
 
+        //helpers
         findTaskById(id) {
             for (let i = 0; i < this.tasksByListId.Task.length; i++) {
                 if (this.tasksByListId.Task[i].id == id) {
@@ -96,19 +120,11 @@ export default {
             this.tasksByListId.Status.forEach(e => {
                 statusByList.push(e);
             })
-
             return statusByList;
         },
 
-        // async findTagByTask(id) {
-        //     let res = (await axios.get(`http://localhost:8000/api/tasks/${id}`)).data;
-        //     for (let i = 0; i < res.tags.length; i++) {
-        //         if (res.tags[i].taskId == id) {
-        //             console.log(res.tags[i].tagId);
-        //             this.tagByTaskId.push(res.tags[i].tagId);
-        //         }
-        //     }
-
-        // }
+        selectTags(e) {
+            this.selectedTags.push(parseInt(e.target.value));
+        }
     }
 }

@@ -49,10 +49,19 @@ body {
     background-color: #a5a1e6;
 }
 
+.task-card h4 {
+    font-size: large;
+}
+
+.header-task-card {
+    display: flex;
+    justify-content: space-between;
+}
+
 .tag-card {
-    background-color: #a44eeb;
-    color: #a44eeb;
     border-radius: 100%;
+    margin-right: 0.2rem;
+    width: 1.5rem;
 }
 
 .save-btn {

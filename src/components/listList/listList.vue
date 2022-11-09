@@ -13,7 +13,9 @@
         <div class="collapse show add-card col-4" id="myCollapse">
             <div class="add-card card-body detail">
                 <textarea class="form-control" placeholder="Enter Task" v-model="title" required></textarea>
-                <select class="form-select" multiple v-model="tagId" required>
+                <select class="form-select mt-2" size="3" multiple v-model="tagId" required
+                    @change="selectTags($event)">
+                    <option disabled>Select tag</option>
                     <option v-for="tag in tasksByListId.Tag" :key="tag.id" :value="tag.id">{{ tag.title }}</option>
                 </select>
                 <button class="btn save-btn mt-2 col-4" @click="createTasks" data-bs-toggle="collapse"
@@ -30,11 +32,27 @@
             <div v-for="task in tasksByListId.Task" :key="task.id">
                 <div class="_card task-card row" v-if="task.statusId == status.id" v-on:dragstart="dragStart"
                     draggable="true" :id=task.id>
-                    <div class="tag-card col-1">.</div>
-                    <div class="del-btn col-10">
-                        <a class="del-btn col-1" @click="deleteTask(task.id)">X</a>
+
+                    <div class="header-task-card">
+                        <div style="display:flex">
+                            <div v-for="tag in taskTags" :key="tag">
+                                <div v-if="tag.taskId == task.id">
+                                    <div v-for="i in tags" :key="i">
+                                        <div class="tag-card" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            :title=i.title :style="{ 'background-color': i.color, 'color': i.color }"
+                                            v-if="i.id == tag.tagId">
+                                            .
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <a class="del-btn" @click="deleteTask(task.id)">X</a>
+
                     </div>
-                    <h4>
+                    <h4 class="mt-2">
                         {{ task.title }}
                     </h4>
                 </div>
