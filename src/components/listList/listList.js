@@ -4,62 +4,62 @@ export default {
 
     data() {
         return {
-            tasksByListId: [],
-            taskTags: [],
+            listById: [],
+            tagsByTasks: [],
             tags: [],
-            title: '',
+            taskTitle: '',
             listId: '',
             selectedTags: []
         }
     },
     mounted() {
         this.getListById();
-        this.getTaskTags();
+        this.getTagsByTasks();
         this.getTags();
     },
     methods: {
         //api
         async getListById() {
             let id = this.$route.params.id
-            this.tasksByListId = (await axios.get(`http://localhost:8000/api/lists/${id}`)).data;
-            setTimeout(this.getListById, 300)
-
+            this.listById = (await axios.get(`http://localhost:8000/api/lists/${id}`)).data;
+            setTimeout(this.getListById, 500)
         },
 
-        async getTaskTags() {
+        async getTagsByTasks() {
             let tasks;
             tasks = (await axios.get('http://localhost:8000/api/tasks/')).data;
             tasks.forEach(task => {
                 task.tags.forEach(tags => {
-                    this.taskTags.push(tags);
+                    this.tagsByTasks.push(tags);
                 })
             })
-
         },
 
         async getTags() {
             this.tags = (await axios.get('http://localhost:8000/api/tags/')).data;
-
         },
 
         async createTasks() {
             let statusBylist = this.findStatusByList();
-            let tags = [];
+            let tagsArr = [];
             this.selectedTags.forEach(i => {
-                tags.push(i);
+                tagsArr.push(i);
             })
-            this.result = (await axios.post('http://localhost:8000/api/tasks',
+
+            const post = (await axios.post('http://localhost:8000/api/tasks',
                 {
-                    title: this.title,
+                    title: this.taskTitle,
                     listId: parseInt(this.$route.params.id),
                     statusId: statusBylist[0].id,
-                    tagId: tags
+                    tagId: tagsArr
                 }
             )).data;
 
-            this.title = "";
+            this.taskTitle = "";
             this.selectedTags = [];
-            console.log("Task created:", this.result);
+            // location.reload();
+            // this.getListById();
+            console.log("Task created:", post);
         },
 
         async deleteTask(id) {
@@ -74,8 +74,8 @@ export default {
         async updateStatus(id, e) {
             try {
                 const task = this.findTaskById(id);
-
                 task.statusId = parseInt(e);
+
                 const put = (await axios.put(`http://localhost:8000/api/tasks/status/${id}`, {
                     statusId: task.statusId
                 })).data;
@@ -108,16 +108,16 @@ export default {
 
         //helpers
         findTaskById(id) {
-            for (let i = 0; i < this.tasksByListId.Task.length; i++) {
-                if (this.tasksByListId.Task[i].id == id) {
-                    return this.tasksByListId.Task[i];
+            for (let i = 0; i < this.listById.Task.length; i++) {
+                if (this.listById.Task[i].id == id) {
+                    return this.listById.Task[i];
                 }
             }
         },
 
         findStatusByList() {
             let statusByList = [];
-            this.tasksByListId.Status.forEach(e => {
+            this.listById.Status.forEach(e => {
                 statusByList.push(e);
             })
             return statusByList;
