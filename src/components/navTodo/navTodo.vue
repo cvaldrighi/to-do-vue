@@ -1,12 +1,16 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light navbg">
         <div class="container-fluid">
+
+            <!--brand-->
             <a class="navbar-brand" href="/"><i class="fa fa-seedling"></i> Reminder</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+            <!--dropdown-->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
@@ -31,6 +35,8 @@
                         </ul>
                     </li>
                 </ul>
+
+                <!--date-->
                 <h6>today is: {{ currentDate() }}</h6>
             </div>
         </div>

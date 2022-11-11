@@ -23,13 +23,13 @@ export default {
         },
 
         async createLists() {
-            this.result = (await axios.post('http://localhost:8000/api/lists',
+            this.newList = (await axios.post('http://localhost:8000/api/lists',
                 {
                     title: this.title
                 }
             )).data;
             this.title = "";
-            console.log(this.result);
+            console.log(this.newList);
             setTimeout(this.getLists, 100)
         },
 
@@ -97,9 +97,10 @@ export default {
             let color = e.target.style.color;
             this.tagColor = color;
 
-            if (!e.target.style.border) {
-                e.target.style.border = "1px solid black"
-            }
+            //@@@@ TO DO
+            // if (!e.target.style.border) {
+            //     e.target.style.border = "1px solid black"
+            // }
 
             console.log(this.tagColor);
         },

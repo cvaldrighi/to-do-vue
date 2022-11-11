@@ -1,10 +1,13 @@
 <template>
+    <!--breadcrumb-->
     <nav aria-label="breadcrumb" class="mt-3">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a class="breadcrumb" href="/">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">List: {{ listById.title }}</li>
         </ol>
     </nav>
+
+    <!--create task-->
     <div class="row m-4">
         <p class="text-center">
             <button type="button" class="btn btn-primary ms-4 add-btn" data-bs-toggle="collapse"
@@ -23,17 +26,24 @@
             </div>
         </div>
     </div>
-    <div class="task-feed mt-5">
+
+    <!--task feed-->
+    <div class="feed mt-5">
+
+        <!--status card-->
         <div class="mt-3 _card status-card" v-for="status in listById.Status" :key="status.id" :id=status.id
             v-on:drop="drop" v-on:dragover="allowDrop">
 
             <h3 class="status-name">{{ status.title }}</h3>
 
+            <!--task card-->
             <div v-for="task in listById.Task" :key="task.id">
                 <div class="_card task-card row" v-if="task.statusId == status.id" v-on:dragstart="dragStart"
                     draggable="true" :id=task.id>
 
                     <div class="header-task-card">
+
+                        <!--tags-->
                         <div style="display:flex">
                             <div v-for="tag in tagsByTasks" :key="tag">
                                 <div v-if="tag.taskId == task.id">
@@ -49,7 +59,7 @@
                             </div>
                         </div>
 
-
+                        <!--delete-->
                         <a class="del-btn" @click="deleteTask(task.id)">X</a>
 
                     </div>

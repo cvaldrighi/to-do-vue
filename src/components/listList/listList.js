@@ -1,15 +1,14 @@
 import axios from "axios";
 export default {
     name: 'listList',
-
     data() {
         return {
             listById: [],
-            tagsByTasks: [],
             tags: [],
+            tagsByTasks: [],
+            selectedTags: [],
             taskTitle: '',
-            listId: '',
-            selectedTags: []
+            listId: ''
         }
     },
     mounted() {
@@ -42,8 +41,8 @@ export default {
         async createTasks() {
             let statusBylist = this.findStatusByList();
             let tagsArr = [];
-            this.selectedTags.forEach(i => {
-                tagsArr.push(i);
+            this.selectedTags.forEach(tag => {
+                tagsArr.push(tag);
             })
 
             const post = (await axios.post('http://localhost:8000/api/tasks',
@@ -117,8 +116,8 @@ export default {
 
         findStatusByList() {
             let statusByList = [];
-            this.listById.Status.forEach(e => {
-                statusByList.push(e);
+            this.listById.Status.forEach(status => {
+                statusByList.push(status);
             })
             return statusByList;
         },

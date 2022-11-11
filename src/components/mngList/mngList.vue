@@ -1,5 +1,7 @@
 <template>
     <div class="container">
+
+        <!--create list-->
         <div class="add-card col-4 mt-5">
             <div class="add-card card-body detail">
                 <input type="text" class="form-control" placeholder="Enter New List" v-model="title" required />
@@ -8,17 +10,23 @@
             </div>
         </div>
 
-        <div class="task-feed mt-5">
+        <!--list feed-->
+        <div class="feed mt-5">
+
+            <!--list card-->
             <div class="task-card _card row" v-for="list in resultList" :key="list.id">
                 <div class="detail">
                     <div style="display:flex; justify-content: space-between;">
-                        <div>
 
+                        <!--modals-->
+                        <div>
                             <a class="fa fa-list p-1 icon" data-bs-toggle="modal" data-bs-target="#modalStatus"
                                 :data-bs-whatever="list.id" id="status"></a>
                             <a class="fa fa-tag p-1 icon" data-bs-toggle="modal" data-bs-target="#modalTags"
                                 :data-bs-whatever="list.id" id="tags"></a>
                         </div>
+
+                        <!--delete-->
                         <div>
                             <a class="del-btn col-1" @click="deleteList(list.id)">X</a>
                         </div>
@@ -41,6 +49,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+
+                        <!--form-->
                         <div class="container-fluid">
                             <div class="row">
                                 <div>
@@ -49,6 +59,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -69,6 +80,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+
+                        <!--form-->
                         <div class="container-fluid">
                             <div class="row">
                                 <div>
@@ -102,6 +115,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
