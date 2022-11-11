@@ -31,29 +31,26 @@
     <div class="feed mt-5">
 
         <!--status card-->
-        <div class="mt-3 _card status-card" v-for="status in listById.Status" :key="status.id" :id=status.id
+        <div class="mt-3 _card status-card" v-for="status in statusByListId" :key="status.id" :id=status.id
             v-on:drop="drop" v-on:dragover="allowDrop">
 
             <h3 class="status-name">{{ status.title }}</h3>
 
             <!--task card-->
-            <div v-for="task in listById.Task" :key="task.id">
-                <div class="_card task-card row" v-if="task.statusId == status.id" v-on:dragstart="dragStart"
+            <div v-for="task in tasksByListId" :key="task.id">
+                <div class="_card task-card row" v-if="task.status.id == status.id" v-on:dragstart="dragStart"
                     draggable="true" :id=task.id>
-
                     <div class="header-task-card">
 
                         <!--tags-->
                         <div style="display:flex">
-                            <div v-for="tag in tagsByTasks" :key="tag">
-                                <div v-if="tag.taskId == task.id">
-                                    <div v-for="_tag in tags" :key="_tag">
-                                        <div class="tag-card" data-bs-toggle="tooltip" data-bs-placement="top"
-                                            :title=_tag.title
-                                            :style="{ 'background-color': _tag.color, 'color': _tag.color }"
-                                            v-if="_tag.id == tag.tagId">
-                                            .
-                                        </div>
+                            <div v-for="tag in tagsByTasks[task.id]" :key="tag">
+                                <div v-for="_tag in tags" :key="_tag">
+                                    <div class="tag-card" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        :title=_tag.title
+                                        :style="{ 'background-color': _tag.color, 'color': _tag.color }"
+                                        v-if="_tag.id == tag.tagId">
+                                        .
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +68,7 @@
         </div>
     </div>
 </template>
-<script src="./listList.js"></script>
+<script src="./listView.js"></script>
 <style src="../../main.css">
 
 </style>

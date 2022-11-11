@@ -39,8 +39,6 @@ body {
 .feed {
     display: flex;
     justify-content: center;
-    overflow-y: hidden;
-    overflow-x: hidden;
 }
 
 .task-card {
