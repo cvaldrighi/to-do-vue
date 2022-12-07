@@ -1,6 +1,11 @@
 import axios from "axios";
+import NavTodo from "../navTodo/navTodo.vue";
+
 export default {
     name: 'listList',
+    components: {
+        NavTodo,
+    },
     data() {
         return {
             tags: [],

@@ -1,4 +1,5 @@
 <template>
+    <NavTodo />
     <div class="container">
 
         <!--create list-->

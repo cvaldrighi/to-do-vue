@@ -1,4 +1,5 @@
 <template>
+    <NavTodo />
     <!--breadcrumb-->
     <nav aria-label="breadcrumb" class="mt-3">
         <ol class="breadcrumb">

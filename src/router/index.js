@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import mngList from '@/components/mngList/mngList.vue'
 import listView from '@/components/listView/listView.vue'
 import HomeView from '@/components/homeView/homeView.vue'
+import loginView from '@/components/loginView/loginView.vue'
 
 
 const routes = [
@@ -19,6 +20,11 @@ const routes = [
     path: '/list/:id',
     name: 'list',
     component: listView
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: loginView
   }
 ]
 

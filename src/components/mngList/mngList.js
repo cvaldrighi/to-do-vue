@@ -1,6 +1,11 @@
 import axios from "axios";
+import NavTodo from "../navTodo/navTodo.vue";
+
 export default {
     name: 'mngList',
+    components: {
+        NavTodo,
+    },
     data() {
         return {
             title: '',
@@ -27,6 +32,7 @@ export default {
                 {
                     title: this.title
                 }
+
             )).data;
             this.title = "";
             console.log(this.newList);

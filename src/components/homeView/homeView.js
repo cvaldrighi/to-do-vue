@@ -1,3 +1,7 @@
+import NavTodo from '../navTodo/navTodo.vue';
 export default {
-    name: 'HomeView'
+    name: 'HomeView',
+    components: {
+        NavTodo,
+    }
 }
