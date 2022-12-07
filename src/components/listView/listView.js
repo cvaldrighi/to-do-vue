@@ -1,10 +1,12 @@
 import axios from "axios";
 import NavTodo from "../navTodo/navTodo.vue";
+import FileUpload from "../fileUpload/fileUpload.vue";
 
 export default {
     name: 'listList',
     components: {
         NavTodo,
+        FileUpload
     },
     data() {
         return {

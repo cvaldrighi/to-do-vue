@@ -4,6 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
+
+import store from "./store"
 import router from './router/index.js'
 
-createApp(App).use(router).mount('#app')
+let app = createApp(App)
+app.use(store)
+app.use(router)
+app.mount('#app')

@@ -8,6 +8,9 @@
         </ol>
     </nav>
 
+    <!--file upload-->
+    <file-upload />
+
     <!--create task-->
     <div class="row m-4">
         <p class="text-center">

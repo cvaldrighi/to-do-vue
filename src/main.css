@@ -107,6 +107,40 @@ a {
 }
 
 
+/* file upload */
+.file-upload {
+    box-shadow: 2px 2px 9px 2px #ccc;
+    border-radius: 1rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 1rem;
+    width: 30%;
+    margin: 0 auto;
+}
+
+input {
+    font-size: 0.9rem;
+}
+
+.upload-button {
+    width: 7rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background-color: #5f149c;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+
+.upload-button:disabled {
+    background-color: #b3bcc4;
+    cursor: no-drop;
+}
+
 @media screen and (max-width: 990px) {
     .feed {
         justify-content: flex-start;
