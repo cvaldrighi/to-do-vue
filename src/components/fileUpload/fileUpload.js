@@ -13,19 +13,22 @@ export default {
             this.selectedFile = selectedFile;
         },
         onUploadFile() {
+            const id = this.$route.params.id;
             const formData = new FormData();
-            formData.append("file", this.selectedFile);  // appending file
 
-            // sending file to the backend
-            axios
-                .post("http://localhost:8000/api/upload", formData)
+            formData.append("file", this.selectedFile);
+            formData.append("listId", id);
+
+
+            axios.post("http://localhost:8000/api/upload", formData)
                 .then(res => {
                     console.log(res);
                     // window.location.reload();
                 })
                 .catch(err => {
                     console.log(err);
-                });
+                }
+                );
         }
     }
 }
